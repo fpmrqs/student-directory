@@ -1,52 +1,50 @@
-#put students in an array
-students = [
-  {name: "Doctor Habnnibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
-#print list with all the students
+#--------------- PRINTS HEADER ------------------
 def print_header
-  puts "The Students of Villains Academy"
-  puts "--------------------------------"
+  puts "The Students of Villains Academy".center(50)
+  puts "--------------------------------".center(50)
 end
 
+#--------------- PRINTS LIST OF STUDENTS ------------------
 def print(students)
-index = 0
-while index < students.length
-  puts "#{students[index][:name]} (#{students[index][:cohort]})"
-  index += 1
-end
-#  students.each do |student|
-#    puts "#{student[:name]} (#{student[:cohort]})"
-#  end
+  index = 0
+  while index < students.length
+    puts "#{students[index][:name]}, likes #{students[index][:hobby]} (#{students[index][:cohort]})"
+    index += 1
+  end
 end
 
+#--------------- PRINTS FOOTER ------------------
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
 
+#--------------- INPUT OF STUDENT INFORMATION ------------------
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts " Please enter the names of the students ".center(50, "-")
+  puts "To finish, just hit return twice".center(50)
   students = []
   name = gets.chomp
 
   while !name.empty? do
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    puts " What's their hobby? ".center(50, "-")
+    hobby = gets.chomp
+    puts " What's their cohort? ".center(50, "-")
+    cohort = gets.chomp
+
+    students << {name: name, cohort: cohort, hobby: hobby}
+
+    if students.length <= 1
+      puts "Now we have #{students.count} student".center(50, " ")
+    else
+      puts "Now we have #{students.count} students".center(50, " ")
+    end
+
     name = gets.chomp
   end
   students
 end
 
+#--------------- CALLING METHODS ------------------
 students = input_students
 print_header
 print(students)
